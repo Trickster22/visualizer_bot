@@ -6,7 +6,7 @@ import sympy as sp
 import re
 
 # API-токен бота
-BOT_TOKEN = "6562035500:AAGjA4qgoHN8CzrAhinOGThYX_o-Qk58-Gw"
+BOT_TOKEN = "YOUR TOKEN"
 
 # Инициализация бота
 bot = telebot.TeleBot(BOT_TOKEN)
