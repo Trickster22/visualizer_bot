@@ -1,9 +1,10 @@
-from sympy import Eq, solve, symbols, sympify
+#Методы одномерной оптимизации
 import math
-import visualizer
+import visualize
 import func
 
-def golden(equation, epsilon, a0, b0, chat_id):
+#Оптимизация методо золотого сечения
+def golden_section(equation, epsilon, a0, b0, chat_id):
     a = [a0]
     b = [b0]
     y = []
@@ -34,6 +35,7 @@ def golden(equation, epsilon, a0, b0, chat_id):
         else:
             k += 1
 
+#Оптимизация методом половинного деления
 def HalfDivision(equation, epsilon, a0, b0, chat_id):
     a = [a0]
     b = [b0]
@@ -69,5 +71,5 @@ def HalfDivision(equation, epsilon, a0, b0, chat_id):
             break
         k += 1
     f_x.append(func.f(x[k + 1], equation))
-    visualizer.makeGif(equation, x, f_x, a, b, chat_id)
+    visualize.makeGif(equation, x, f_x, a, b, chat_id)
     return (f'Минимум - \'{x[k + 1] }\'\nФункция - \'{f_x[k + 1]}\'')

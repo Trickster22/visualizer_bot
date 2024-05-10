@@ -1,8 +1,9 @@
+#Методы условной оптимизации
 import sympy as sp
 import func
-import visualizer
+import visualize
 
-
+#Оптимизация методом штрафов
 def penalty(user_data):
     eq = user_data['equation']
     lim_eq = user_data['lim']
@@ -16,14 +17,13 @@ def penalty(user_data):
         x1 = x[k]['x1']
         x2 = x[k]['x2']
         x[k]['f(x)'] = func.f2(x1, x2, eq)
-        if p(lim_eq, r, x1, x2) <= epsilon:
-            visualizer.make3dGif(eq, lim_eq, x)
+        if penalty_func(lim_eq, r, x1, x2) <= epsilon:
+            visualize.make3dGif(eq, lim_eq, x)
             return (f'x1: {x1}\nx2: {x2}\nf(x): {func.f2(x1, x2, eq)}')
         r *= c
-        k += 1
-        
+        k += 1     
     
-    
+#Поиск x1 и x2 путем решения вспомогательной функции
 def find_x(eq, lim_eq, r):
     x1 = sp.symbols('x1')
     x2 = sp.symbols('x2')
@@ -35,8 +35,8 @@ def find_x(eq, lim_eq, r):
     x['x2'] = float(res[x2].subs(r_sym, r))
     return x
 
-
-def p(lim_eq, r, x1, x2):
+#Штрафная функция
+def penalty_func(lim_eq, r, x1, x2):
     x1_sym = sp.symbols('x1')
     x2_sym = sp.symbols('x2')
     r_sym = sp.symbols('r')

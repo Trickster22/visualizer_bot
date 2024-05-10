@@ -1,5 +1,5 @@
 import telebot
-import minimizer
+import optimize
 from telebot import types
 from sympy import symbols, Eq, solve, sympify
 import sympy as sp
@@ -137,7 +137,7 @@ def save_c(message):
     text = message.text
     if message.text.isdigit():
         userData[message.chat.id]['c'] = text
-        bot.send_message(message.chat.id, minimizer.minimize(userData[message.chat.id], message.chat.id))
+        bot.send_message(message.chat.id, optimize.minimize(userData[message.chat.id], message.chat.id))
         try:
             # Отправляем HTML-файл пользователю
             with open("./media/index.html", 'rb') as html:
@@ -199,7 +199,7 @@ def saveInterval(message):
         if float(l[0]) <= float(l[1]):
             chat_id = message.chat.id
             userData[chat_id]['l'] = message.text
-            bot.send_message(chat_id, minimizer.minimize(userData[chat_id], chat_id))
+            bot.send_message(chat_id, optimize.minimize(userData[chat_id], chat_id))
             method = userData[chat_id]['type']
             file_path = f'media/{chat_id}_{method}.gif'
             gif = open(file_path, 'rb')

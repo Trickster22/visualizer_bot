@@ -61,7 +61,11 @@ def make3dGif(eq, lim_eq, res):
     
     frames_data = []
     for i in range(len(res)):
-        frames_data.append(go.Frame(data=[surface1, surface2, go.Scatter3d(x=[res[i]['x1']], y=[res[i]['x2']], z=[res[i]['f(x)']], mode='markers', marker=dict(size=5, color='red'))]))
+        frames_data.append(go.Frame(data=[
+            surface1,
+            surface2, 
+            go.Scatter3d(x=[res[i]['x1']], y=[res[i]['x2']], z=[res[i]['f(x)']], mode='markers', marker=dict(size=5, color='red'))
+        ]))
     
     # Создание фигуры
     fig = go.Figure(data=[surface1, surface2, scatter1])
@@ -75,7 +79,7 @@ def make3dGif(eq, lim_eq, res):
                   updatemenus=[dict(type="buttons", buttons=[dict(label="Play", method="animate", args=[None])])],
                   margin=dict(l=0, r=0, t=0, b=0))
 
-    #fig.write_html("./media/index.html")
+    fig.write_html("./media/index.html")
     # Отображение
     #fig.show()
     
