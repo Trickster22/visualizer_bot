@@ -103,7 +103,6 @@ def save_equation_2(message):
         bot.send_message(message.chat.id, "Что-то вы не то ввели. Попробуйте еще раз. Например 6*x^2+2*z^2-25")
         bot.register_next_step_handler(message, save_equation_2)
 
-
 def save_lim(message):
     if check_equation(message):
         userData[message.chat.id]['lim'] = message.text
